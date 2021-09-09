@@ -1,8 +1,7 @@
 package com.eugen.moviemaker.service.impl;
 
 import com.eugen.moviemaker.dao.jdbc.MovieDao;
-import com.eugen.moviemaker.dao.jdbc.mapper.GenreRowMapper;
-import com.eugen.moviemaker.dao.jdbc.mapper.MovieRowMapper;
+import com.eugen.moviemaker.dao.jdbc.mappers.MovieRowMapper;
 import com.eugen.moviemaker.entity.Movie;
 import com.eugen.moviemaker.service.MovieService;
 import org.junit.jupiter.api.BeforeAll;

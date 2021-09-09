@@ -45,4 +45,10 @@ public class MovieController {
         return json;
     }
 
+    @GetMapping(value="movie/genre/{genreId},")
+    public String findMoviesBYGenres(@PathVariable("genreId") String genreId) {
+        String json = movieService.getMoviesByGenre(genreId);
+        return json;
+    }
+
 }

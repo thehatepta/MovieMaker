@@ -2,9 +2,8 @@ package com.eugen.moviemaker.service.impl;
 
 import com.eugen.moviemaker.dao.jdbc.DaoInterfaces.GenreDaoInterface;
 import com.eugen.moviemaker.dao.jdbc.GenreDao;
-import com.eugen.moviemaker.dao.jdbc.mapper.GenreRowMapper;
+import com.eugen.moviemaker.dao.jdbc.mappers.GenreRowMapper;
 import com.eugen.moviemaker.entity.Genre;
-import com.eugen.moviemaker.entity.Movie;
 import com.eugen.moviemaker.service.GenreService;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

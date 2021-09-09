@@ -1,7 +1,7 @@
 package com.eugen.moviemaker.dao.jdbc;
 
 import com.eugen.moviemaker.dao.jdbc.DaoInterfaces.MovieDaoInterface;
-import com.eugen.moviemaker.dao.jdbc.mapper.MovieRowMapper;
+import com.eugen.moviemaker.dao.jdbc.mappers.MovieRowMapper;
 import com.eugen.moviemaker.entity.Movie;
 import lombok.AllArgsConstructor;
 import org.slf4j.Logger;

@@ -1,4 +1,4 @@
-package com.eugen.moviemaker.dao.jdbc.mapper;
+package com.eugen.moviemaker.dao.jdbc.mappers;
 
 import com.eugen.moviemaker.entity.Movie;
 import org.springframework.jdbc.core.RowMapper;

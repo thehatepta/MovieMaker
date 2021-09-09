@@ -1,10 +1,9 @@
 package com.eugen.moviemaker.service.impl;
 
-import com.eugen.moviemaker.dao.jdbc.mapper.GenreRowMapper;
-import com.eugen.moviemaker.dao.jdbc.mapper.MovieRowMapper;
+import com.eugen.moviemaker.dao.jdbc.mappers.GenreRowMapper;
+import com.eugen.moviemaker.dao.jdbc.mappers.MovieRowMapper;
 import com.eugen.moviemaker.entity.Genre;
 import com.eugen.moviemaker.entity.Movie;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInstance;
 import org.mockito.Mock;

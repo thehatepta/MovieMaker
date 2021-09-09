@@ -1,7 +1,7 @@
 package com.eugen.moviemaker.dao.jdbc;
 
 import com.eugen.moviemaker.dao.jdbc.DaoInterfaces.GenreDaoInterface;
-import com.eugen.moviemaker.dao.jdbc.mapper.GenreRowMapper;
+import com.eugen.moviemaker.dao.jdbc.mappers.GenreRowMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 
