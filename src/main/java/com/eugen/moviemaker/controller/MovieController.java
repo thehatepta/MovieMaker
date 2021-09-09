@@ -2,6 +2,7 @@ package com.eugen.moviemaker.controller;
 
 
 import com.eugen.moviemaker.entity.Movie;
+import com.eugen.moviemaker.service.GenreServiceInterface;
 import com.eugen.moviemaker.service.MovieServiceInterface;
 
 import com.eugen.moviemaker.util.JsonJacksonConverter;
@@ -23,6 +24,9 @@ public class MovieController {
     @Autowired
     private MovieServiceInterface movieService;
 
+    @Autowired
+    private GenreServiceInterface genreService;
+
     @GetMapping(path = "/movie")
     public String getAllMovies(Model model) {
         String json = movieService.findAll();
@@ -31,7 +35,13 @@ public class MovieController {
 
     @GetMapping(path = "/movie/random")
     public String getRandom(Model model) {
-        String json = movieService.findAll();
+        String json = movieService.getThreeRandom();
+        return json;
+    }
+
+    @GetMapping(path = "/movie/genre")
+    public String findAllGenres(Model model) {
+        String json = genreService.getAllGenres();
         return json;
     }
 

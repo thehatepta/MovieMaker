@@ -1,4 +1,4 @@
-package com.eugen.moviemaker.dao;
+package com.eugen.moviemaker.dao.jdbc.DaoInterfaces;
 
 
 import com.eugen.moviemaker.entity.Movie;
@@ -9,5 +9,4 @@ public interface MovieDaoInterface<T> {
 
     List<T> findAll();
     List<T> getThreeRandom();
-    List<T> getAllGenres();
 }

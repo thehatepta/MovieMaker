@@ -9,5 +9,5 @@ public interface MovieServiceInterface<T> {
 
     String findAll();
     String getThreeRandom();
-    String getAllGenres();
+
 }
