@@ -29,7 +29,7 @@ public class MovieService implements MovieServiceInterface {
     }
 
     @Override
-    public String getMoviesByGenre(String genre) {
+    public String getMoviesByGenre(int genre) {
         return JsonJacksonConverter.convertToJson(movieDao.getMoviesByGenre(genre));
     }
 }

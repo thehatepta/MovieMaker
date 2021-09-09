@@ -9,5 +9,5 @@ public interface MovieDaoInterface<T> {
 
     List<T> findAll();
     List<T> getThreeRandom();
-    List<T> getMoviesByGenre(String genre);
+    List<T> getMoviesByGenre(int genre);
 }

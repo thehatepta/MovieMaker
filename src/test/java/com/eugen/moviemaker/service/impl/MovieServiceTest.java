@@ -26,7 +26,7 @@ class MovieServiceTest {
 
     private static final String FIND_ALL_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie;";
     private static final String FIND_RANDOM_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie LIMIT 5;";
-    private static final String FIND_MOVIES_BY_GENRES_QUERY = "Select name_native from move as m inner join movie_genre as mg join genre as g where genre.name = ?";
+    private static final String FIND_MOVIES_BY_GENRES_QUERY = "Select name_native from move as m inner join movie_genre as mg join genre as genre where genre.id = ?";
 
     MovieDaoInterface movieDao;
 
@@ -81,7 +81,7 @@ class MovieServiceTest {
 
     @Test
     public void testFindMoviesByGenre() {
-        String findMoviesByGenre = movieService.getMoviesByGenre("fantasy");
+        String findMoviesByGenre = movieService.getMoviesByGenre(3);
         assertEquals(findMoviesByGenre, "[{\"id\":6,\"name_russian\":\"russian_fantasy\",\"name_native\":\"fantasy-1\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":200,\"price\":20.1,\"picture_path\":\"picture.com\",\"votes\":6},{\"id\":7,\"name_russian\":\"russian_fantasy\",\"name_native\":\"fantasy-2\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":250,\"price\":77.7,\"picture_path\":\"picture.com\",\"votes\":7}]");
     }
 

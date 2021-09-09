@@ -18,7 +18,7 @@ public class MovieDao implements MovieDaoInterface {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private static final String FIND_ALL_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie;";
     private static final String FIND_RANDOM_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie LIMIT 5;";
-    private static final String FIND_MOVIES_BY_GENRES_QUERY = "Select name_native from move as m inner join movie_genre as mg join genre as g where genre.name = ?";
+    private static final String FIND_MOVIES_BY_GENRES_QUERY = "Select name_native from move as m inner join movie_genre as mg join genre as genre where genre.id = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -39,7 +39,7 @@ public class MovieDao implements MovieDaoInterface {
     }
 
     @Override
-    public List<Movie> getMoviesByGenre(String genre) {
+    public List<Movie> getMoviesByGenre(int genre) {
         return jdbcTemplate.query(FIND_MOVIES_BY_GENRES_QUERY, new Object[]{genre}, MOVIE_ROW_MAPPER);
     }
 
