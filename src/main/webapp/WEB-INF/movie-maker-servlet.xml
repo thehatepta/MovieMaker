@@ -13,18 +13,14 @@
 
     <context:component-scan base-package="com.eugen.moviemaker"/>
 
-    <bean id="movieServiceImpl" class="com.eugen.moviemaker.service.impl.MovieServiceImpl">
-        <constructor-arg name="movieDao" ref="movieDao"/>
+    <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="dataSource" />
     </bean>
 
-    <bean id="movieDao" class="com.eugen.moviemaker.dao.jdbc.MovieDaoImpl">
-        <constructor-arg ref="jdbcConnector"/>
-    </bean>
-
-    <bean id="jdbcConnector" class="com.eugen.moviemaker.dao.jdbc.JdbcConnector">
-        <property name="jdbcUrl" value="jdbc:h2:~/test"/>
-        <property name="jdbcLogin" value="sa"/>
-        <property name="jdbcPassword" value=""/>
+    <bean id="dataSource" class="org.postgresql.ds.PGSimpleDataSource">
+        <property name="url" value="jdbc:postgresql://localhost:5432/postgres"/>
+        <property name="user" value="app"/>
+        <property name="password" value="app"/>
     </bean>
 
     <mvc:annotation-driven/>
