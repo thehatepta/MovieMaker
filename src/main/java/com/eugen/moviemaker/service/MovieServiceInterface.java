@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface MovieServiceInterface<T> {
 
-    List<T> findAll();
+    String findAll();
+    String getThreeRandom();
+    String getAllGenres();
 }

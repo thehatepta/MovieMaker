@@ -25,15 +25,13 @@ public class MovieController {
 
     @GetMapping(path = "/movie")
     public String getAllMovies(Model model) {
-        ArrayList<Movie> allMovies =(ArrayList) movieService.findAll();
-        String json =JsonJacksonConverter.convertToJson(allMovies);
+        String json = movieService.findAll();
         return json;
     }
 
     @GetMapping(path = "/movie/random")
     public String getRandom(Model model) {
-        ArrayList<Movie> allMovies =(ArrayList) movieService.findAll();
-        String json =JsonJacksonConverter.convertToJson(allMovies);
+        String json = movieService.findAll();
         return json;
     }
 

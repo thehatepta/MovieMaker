@@ -18,6 +18,9 @@ import java.util.List;
 public class MovieDao implements MovieDaoInterface {
     private final Logger log = LoggerFactory.getLogger(getClass());
     private static final String FIND_ALL_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie;";
+    private static final String FIND_RANDOM_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie LIMIT 5;";
+    private static final String FIND_ALL_GENRES_QUERY = "SELECT distinct(name) FROM genre;";
+    private static final String FIND_MOVIES_BY_GENRES_QUERY = "Select name_native from move as m inner join movie_genre as mg join genre as g where genere.id = ?";
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -28,13 +31,13 @@ public class MovieDao implements MovieDaoInterface {
     }
 
     @Override
-    public ArrayList<Movie> findAll() {
-        return (ArrayList<Movie>) jdbcTemplate.query(FIND_ALL_MOVIES_QUERY, MOVIE_ROW_MAPPER);
+    public List<Movie> findAll() {
+        return jdbcTemplate.query(FIND_ALL_MOVIES_QUERY, MOVIE_ROW_MAPPER);
     }
 
     @Override
-    public List getThreeRandom() {
-        return null;
+    public List<Movie> getThreeRandom() {
+        return jdbcTemplate.query(FIND_RANDOM_MOVIES_QUERY, MOVIE_ROW_MAPPER);
     }
 
     @Override
