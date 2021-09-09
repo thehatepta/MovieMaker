@@ -1,4 +1,4 @@
-package com.eugen.moviemaker.service.impl;
+package com.eugen.moviemaker.service;
 
 import com.eugen.moviemaker.dao.jdbc.DaoInterfaces.GenreDaoInterface;
 import com.eugen.moviemaker.service.GenreServiceInterface;

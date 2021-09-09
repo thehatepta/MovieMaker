@@ -1,4 +1,4 @@
-package com.eugen.moviemaker.service.impl;
+package com.eugen.moviemaker.service;
 
 import com.eugen.moviemaker.dao.jdbc.DaoInterfaces.MovieDaoInterface;
 import com.eugen.moviemaker.service.MovieServiceInterface;
@@ -26,5 +26,10 @@ public class MovieService implements MovieServiceInterface {
     @Override
     public String getThreeRandom() {
         return JsonJacksonConverter.convertToJson(movieDao.getThreeRandom());
+    }
+
+    @Override
+    public String getMoviesByGenre(String genre) {
+        return JsonJacksonConverter.convertToJson(movieDao.getMoviesByGenre(genre));
     }
 }

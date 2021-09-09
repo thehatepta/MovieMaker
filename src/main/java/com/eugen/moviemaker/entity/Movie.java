@@ -27,7 +27,7 @@ public class Movie {
                 ", name_russian='" + name_russian + '\'' +
                 ", name_native='" + name_native + '\'' +
                 ", description='" + description + '\'' +
-                ", year_of_realease=" + year_of_release +
+                ", year_of_release=" + year_of_release +
                 ", rating=" + rating +
                 ", price=" + price +
                 ", picture_path='" + picture_path + '\'' +

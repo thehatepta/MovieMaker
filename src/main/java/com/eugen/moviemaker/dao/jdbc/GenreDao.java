@@ -9,7 +9,7 @@ import java.util.List;
 
 public class GenreDao implements GenreDaoInterface {
     private static final String FIND_ALL_GENRES_QUERY = "SELECT distinct(name) FROM genre;";
-    private static final String FIND_MOVIES_BY_GENRES_QUERY = "Select name_native from move as m inner join movie_genre as mg join genre as g where genere.id = ?";
+
 
     private JdbcTemplate jdbcTemplate;
 
