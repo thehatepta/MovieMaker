@@ -10,4 +10,6 @@ public interface MovieDaoInterface<T> {
     List<T> findAll();
     List<T> getThreeRandom();
     List<T> getMoviesByGenre(int genre);
+    List<T> sortMoviesByRating(String ratingOrder);
+    List<T> sortMoviesByPrice(String priceOrder);
 }

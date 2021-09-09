@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 
 @Controller
-@RequestMapping(path = "/api/v1")
+@RequestMapping(path = "/api/v1/movie")
 public class MovieController {
     private final Logger log = LoggerFactory.getLogger(getClass());
 
@@ -23,27 +23,53 @@ public class MovieController {
     @Autowired
     private GenreServiceInterface genreService;
 
-    @GetMapping(path = "/movie")
-    public String getAllMovies(Model model) {
+    @GetMapping()
+    public String getAllMovies() {
         String json = movieService.findAll();
         return json;
     }
 
-    @GetMapping(path = "/movie/random")
-    public String getRandom(Model model) {
+    @GetMapping(params = {"rating"})
+    public String sortMoviesByRating(@RequestParam(name = "rating") String ratingSortingOrder){
+        String json = movieService.sortMoviesByRating(ratingSortingOrder);
+        return json;
+    }
+
+    @GetMapping(params = {"price"})
+    public String sortMoviesByPrice(@RequestParam(name = "price") String priceSortingOrder){
+        String json = movieService.sortMoviesByPrice(priceSortingOrder);
+        return json;
+    }
+
+    @GetMapping(path = "/random")
+    public String getRandom() {
         String json = movieService.getThreeRandom();
         return json;
     }
 
-    @GetMapping(path = "/movie/genre")
-    public String findAllGenres(Model model) {
+
+    @GetMapping(path = "/genre")
+    public String findAllGenres() {
         String json = genreService.getAllGenres();
         return json;
     }
 
-    @GetMapping("movie/genre/{genreId},")
+    @GetMapping(path = "/genre/{genreId}")
     public String findMoviesBYGenres(@PathVariable("genreId") int genreId) {
         String json = movieService.getMoviesByGenre(genreId);
         return json;
     }
+
+    @GetMapping(path = "/genre/{genreId}", params = {"price"})
+    public String findMoviesBYGenresSortByPrice(@PathVariable("genreId") int genreId, @RequestParam(name = "price") String priceSortingOrder) {
+        String json = movieService.getMoviesByGenre(genreId);
+        return json;
+    }
+
+    @GetMapping(path = "/genre/{genreId}", params = {"price"})
+    public String findMoviesBYGenresSortByRating(@PathVariable("genreId") int genreId, @RequestParam(name = "rating") String ratingSortingOrder) {
+        String json = movieService.getMoviesByGenre(genreId);
+        return json;
+    }
+
 }

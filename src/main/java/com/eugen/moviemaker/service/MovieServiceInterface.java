@@ -10,5 +10,7 @@ public interface MovieServiceInterface<T> {
     String findAll();
     String getThreeRandom();
     String getMoviesByGenre(int genre);
+    String sortMoviesByRating(String ratingOrder);
+    String sortMoviesByPrice(String priceOrder);
 
 }

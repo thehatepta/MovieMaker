@@ -24,9 +24,13 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class MovieServiceTest {
 
-    private static final String FIND_ALL_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie;";
+    private static final String FIND_ALL_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie";
     private static final String FIND_RANDOM_MOVIES_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie LIMIT 5;";
     private static final String FIND_MOVIES_BY_GENRES_QUERY = "Select name_native from move as m inner join movie_genre as mg join genre as genre where genre.id = ?";
+    private static final String FIND_MOVIES_SORTED_BY_RATING_DESC_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie ORDER BY rating desc";
+    private static final String FIND_MOVIES_SORTED_BY_RATING_ASC_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie ORDER BY rating asc";
+    private static final String FIND_MOVIES_SORTED_BY_PRICE_DESC_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie ORDER BY price desc";
+    private static final String FIND_MOVIES_SORTED_BY_PRICE_ASC_QUERY = "SELECT id, name_russian, name_native,  year_of_release, description, rating, price, picture_path, votes FROM movie ORDER BY price asc";
 
     MovieDaoInterface movieDao;
 
@@ -61,6 +65,14 @@ class MovieServiceTest {
                 .thenReturn(postgresAllProducts);
         Mockito.when(jdbcTemplate.query(eq(FIND_RANDOM_MOVIES_QUERY), any(MovieRowMapper.class)))
                 .thenReturn(postgresAllProducts);
+        Mockito.when(jdbcTemplate.query(eq(FIND_MOVIES_SORTED_BY_RATING_DESC_QUERY), any(MovieRowMapper.class)))
+                .thenReturn(postgresAllProducts);
+        Mockito.when(jdbcTemplate.query(eq(FIND_MOVIES_SORTED_BY_RATING_ASC_QUERY), any(MovieRowMapper.class)))
+                .thenReturn(postgresAllProducts);
+        Mockito.when(jdbcTemplate.query(eq(FIND_MOVIES_SORTED_BY_PRICE_DESC_QUERY), any(MovieRowMapper.class)))
+                .thenReturn(postgresAllProducts);
+        Mockito.when(jdbcTemplate.query(eq(FIND_MOVIES_SORTED_BY_PRICE_ASC_QUERY), any(MovieRowMapper.class)))
+                .thenReturn(postgresAllProducts);
         Mockito.when(jdbcTemplate.query(eq(FIND_MOVIES_BY_GENRES_QUERY),any(Object[].class), any(MovieRowMapper.class)))
                 .thenReturn(postgresMoviesByGenre);
     }
@@ -83,6 +95,32 @@ class MovieServiceTest {
     public void testFindMoviesByGenre() {
         String findMoviesByGenre = movieService.getMoviesByGenre(3);
         assertEquals(findMoviesByGenre, "[{\"id\":6,\"name_russian\":\"russian_fantasy\",\"name_native\":\"fantasy-1\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":200,\"price\":20.1,\"picture_path\":\"picture.com\",\"votes\":6},{\"id\":7,\"name_russian\":\"russian_fantasy\",\"name_native\":\"fantasy-2\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":250,\"price\":77.7,\"picture_path\":\"picture.com\",\"votes\":7}]");
+    }
+
+
+    @Test
+    public void testSortMoviesByRatingDesc() {
+        String sortMoviesByRating = movieService.sortMoviesByRating("desc");
+        assertEquals(sortMoviesByRating, "[{\"id\":1,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":10,\"price\":0.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":2,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":100,\"price\":1.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":3,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":200,\"price\":2.1,\"picture_path\":\"picture.com\",\"votes\":10}]");
+    }
+
+    @Test
+    public void testSortMoviesByRatingAsc() {
+        String sortMoviesByRating = movieService.sortMoviesByRating("asc");
+        assertEquals(sortMoviesByRating, "[{\"id\":1,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":10,\"price\":0.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":2,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":100,\"price\":1.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":3,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":200,\"price\":2.1,\"picture_path\":\"picture.com\",\"votes\":10}]");
+    }
+
+
+    @Test
+    public void testSortMoviesByPriceDesc() {
+        String sortMoviesByPrice = movieService.sortMoviesByPrice("desc");
+        assertEquals(sortMoviesByPrice, "[{\"id\":1,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":10,\"price\":0.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":2,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":100,\"price\":1.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":3,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":200,\"price\":2.1,\"picture_path\":\"picture.com\",\"votes\":10}]");
+    }
+
+    @Test
+    public void testSortMoviesByPriceAcs() {
+        String sortMoviesByPrice = movieService.sortMoviesByPrice("asc");
+        assertEquals(sortMoviesByPrice, "[{\"id\":1,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":10,\"price\":0.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":2,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":100,\"price\":1.1,\"picture_path\":\"picture.com\",\"votes\":10},{\"id\":3,\"name_russian\":\"name_russian\",\"name_native\":\"name_native\",\"description\":\"description\",\"year_of_release\":1994,\"rating\":200,\"price\":2.1,\"picture_path\":\"picture.com\",\"votes\":10}]");
     }
 
 
