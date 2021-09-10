@@ -18,15 +18,15 @@ public class JsonJacksonConverter {
     private ObjectMapper objectMapper = new ObjectMapper();
 
     public Movie parseCity(String json) {
-        log.info("Start parsing city from json {}", json);
+        log.info("Start parsing movie from json {}", json);
         long startTime = System.currentTimeMillis();
         Movie movie = parseValue(json, Movie.class);
         long time = System.currentTimeMillis() - startTime;
-        log.info("City {} is received. It took {} ms", movie, time);
+        log.info("Movie {} is received. It took {} ms", movie, time);
         return movie;
     }
 
-    public static String convertToJson(ArrayList<Movie> movie) {
+    public static String convertToJson(List<Movie> movie) {
         ObjectMapper objectMapper = new ObjectMapper();
 
         try {
