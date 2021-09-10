@@ -62,13 +62,13 @@ public class MovieController {
 
     @GetMapping(path = "/genre/{genreId}", params = {"price"})
     public String findMoviesBYGenresSortByPrice(@PathVariable("genreId") int genreId, @RequestParam(name = "price") String priceSortingOrder) {
-        String json = movieService.getMoviesByGenre(genreId);
+        String json = movieService.sortMoviesByGenreAndRating(genreId, priceSortingOrder);
         return json;
     }
 
     @GetMapping(path = "/genre/{genreId}", params = {"price"})
     public String findMoviesBYGenresSortByRating(@PathVariable("genreId") int genreId, @RequestParam(name = "rating") String ratingSortingOrder) {
-        String json = movieService.getMoviesByGenre(genreId);
+        String json = movieService.sortMoviesByGenreAndPrice(genreId, ratingSortingOrder);
         return json;
     }
 

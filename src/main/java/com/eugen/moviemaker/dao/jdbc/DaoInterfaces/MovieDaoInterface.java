@@ -12,4 +12,6 @@ public interface MovieDaoInterface<T> {
     List<T> getMoviesByGenre(int genre);
     List<T> sortMoviesByRating(String ratingOrder);
     List<T> sortMoviesByPrice(String priceOrder);
+    List<T> sortMoviesByGenreAndPrice(int genre, String priceOrder);
+    List<T> sortMoviesByGenreAndRating(int genre, String ratingOrder);
 }

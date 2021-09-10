@@ -42,4 +42,14 @@ public class MovieService implements MovieServiceInterface {
     public String sortMoviesByPrice(String priceOrder) {
         return JsonJacksonConverter.convertToJson(movieDao.sortMoviesByPrice(priceOrder));
     }
+
+    @Override
+    public String sortMoviesByGenreAndRating(int genre, String ratingOrder) {
+        return JsonJacksonConverter.convertToJson(movieDao.sortMoviesByGenreAndRating(genre, ratingOrder));
+    }
+
+    @Override
+    public String sortMoviesByGenreAndPrice(int genre, String priceOrder) {
+        return JsonJacksonConverter.convertToJson(movieDao.sortMoviesByGenreAndPrice(genre, priceOrder));
+    }
 }

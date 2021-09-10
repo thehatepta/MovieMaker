@@ -40,7 +40,7 @@ public class MovieDao implements MovieDaoInterface {
 
     @Override
     public List<Movie> getMoviesByGenre(int genre) {
-        return jdbcTemplate.query(FIND_MOVIES_BY_GENRES_QUERY, new Object[]{genre}, MOVIE_ROW_MAPPER);
+        return jdbcTemplate.query(FIND_MOVIES_BY_GENRES_QUERY, MOVIE_ROW_MAPPER, genre);
     }
 
     @Override
@@ -53,6 +53,18 @@ public class MovieDao implements MovieDaoInterface {
     public List sortMoviesByPrice(String priceOrder) {
         String query = FIND_ALL_MOVIES_QUERY + " ORDER BY price " + priceOrder;
         return jdbcTemplate.query(query, MOVIE_ROW_MAPPER);
+    }
+
+    @Override
+    public List sortMoviesByGenreAndPrice(int genre, String priceOrder) {
+        String query = FIND_MOVIES_BY_GENRES_QUERY+ " ORDER BY price " + priceOrder;
+        return jdbcTemplate.query(query, MOVIE_ROW_MAPPER, genre);
+    }
+
+    @Override
+    public List sortMoviesByGenreAndRating(int genre, String ratingOrder) {
+        String query = FIND_MOVIES_BY_GENRES_QUERY+ " ORDER BY rating " + ratingOrder;
+        return jdbcTemplate.query(query, MOVIE_ROW_MAPPER, genre);
     }
 
 }
